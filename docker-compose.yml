@@ -1,44 +1,29 @@
 version: '3'
 
 services:
-  web:
+  drafto_app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: proyecto
+    container_name: draftoApp
     ports:
-      - "8080:80"
+      - "3500:80"
     depends_on:
       - database
 
   database:
     image: mariadb
-    container_name: proyectodb
+    container_name: draftoBD
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: draftosaurus_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: drafto123
+      MYSQL_DATABASE: crudlitesystem
+      MYSQL_USER: crudlite
+      MYSQL_PASSWORD: crudlite
     ports:
-      - "8082:3306"
+      - "33060:3306"
     volumes:
-      - maria-db:/var/lib/mysql
+      - db-volume:/var/lib/mysql
       - ./others/bd.sql:/docker-entrypoint-initdb.d/bd.sql
 
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: draftosaurus_phpmyadmin
-    restart: always
-    depends_on:
-      - database
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: drafto123
-    ports:
-      - "8081:80"
-
-# Definición de los volúmenes
 volumes:
-  draftoapp:
-  maria-db:
+  db-volume:
