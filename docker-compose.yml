@@ -1,33 +1,29 @@
-version: "3.9"
+version: '3'
 
 services:
   web:
-    build: .
-    container_name: draftosaurus_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyecto
     ports:
       - "8080:80"
-    volumes:
-      # volumen llamado 'proyecto' donde se guardará tu app
-      - proyecto:/var/www/html/draftosaurus/public
     depends_on:
-      - db
-    networks:
-      - draftosaurus_net
+      - database
 
-  db:
-    image: mariadb:11
-    container_name: draftosaurus_db
-    restart: always
+  database:
+    image: mariadb
+    container_name: proyectodb
     environment:
-      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: draftosaurus_db
       MYSQL_USER: root
-      MYSQL_PASSWORD: root123
+      MYSQL_PASSWORD: drafto123
+    ports:
+      - "33060:3306"
     volumes:
-      # volumen llamado 'mariadb' donde se guardarán los datos del servidor SQL
-      - mariadb:/var/lib/mysql
-    networks:
-      - draftosaurus_net
+      - maria-db:/var/lib/mysql
+      - ./others/bd.sql:/docker-entrypoint-initdb.d/bd.sql
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -38,18 +34,11 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: root123
+      PMA_PASSWORD: drafto123
     ports:
       - "8081:80"
-    networks:
-      - draftosaurus_net
 
 # Definición de los volúmenes
 volumes:
   proyecto:
-  mariadb:
-
-# Red interna para conectar los contenedores
-networks:
-  draftosaurus_net:
-    driver: bridge
+  maria-db:
