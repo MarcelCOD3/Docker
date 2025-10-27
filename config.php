@@ -1,16 +1,16 @@
 <?php
-// Conexión para el contenedor Docker
-$servername = "database";      // nombre del servicio MariaDB en docker-compose
-$username = "root";             // usuario definido en docker-compose
-$password = "drafto123";       // contraseña definida en docker-compose
-$dbname = "draftosaurus_db";    // nombre de la base de datos definido en docker-compose
+// Conexión para el contenedor
+$servername = "database"; // nombre del servicio definido en docker-compose
+$username = "crudlite";   // usuario definido en docker-compose
+$password = "crudlite";   // contraseña definida en docker-compose
+$dbname = "crudlitesystem"; // nombre de la base de datos definido en docker-compose
 
 /*
- // Conexión para trabajar local (opcional)
- $servername = "localhost";
- $username = "root";
- $password = "root";
- $dbname = "draftosaurus_db";
+// Conexión para trabajar local
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "crudlitesystem";
 */
 
 try {
