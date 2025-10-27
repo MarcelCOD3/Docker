@@ -20,7 +20,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: drafto123
     ports:
-      - "33060:3306"
+      - "8082:3306"
     volumes:
       - maria-db:/var/lib/mysql
       - ./others/bd.sql:/docker-entrypoint-initdb.d/bd.sql
