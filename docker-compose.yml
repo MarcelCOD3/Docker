@@ -30,7 +30,7 @@ services:
     container_name: draftosaurus_phpmyadmin
     restart: always
     depends_on:
-      - db
+      - database
     environment:
       PMA_HOST: db
       PMA_USER: root
