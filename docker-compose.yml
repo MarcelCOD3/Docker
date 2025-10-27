@@ -22,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: draftosaurus_db
       MYSQL_USER: root
-      MYSQL_PASSWORD: ""
+      MYSQL_PASSWORD: root123
     volumes:
       # volumen llamado 'mariadb' donde se guardarán los datos del servidor SQL
       - mariadb:/var/lib/mysql
@@ -38,7 +38,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: ""
+      PMA_PASSWORD: root123
     ports:
       - "8081:80"
     networks:
