@@ -40,5 +40,5 @@ services:
 
 # Definición de los volúmenes
 volumes:
-  proyecto:
+  draftoapp:
   maria-db:
