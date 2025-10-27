@@ -1,14 +1,15 @@
-# Imagen base con PHP 8.2 y Apache
+# Usar la imagen base de PHP con Apache
 FROM php:8.2-apache
 
-# Instalar extensiones necesarias para MariaDB
-RUN docker-php-ext-install pdo pdo_mysql
+# Instalar extensiones necesarias (por ejemplo, mysqli)
+# RUN docker-php-ext-install mysqli
+ RUN docker-php-ext-install pdo pdo_mysql
 
-# Directorio de trabajo dentro del contenedor
-WORKDIR /var/www/html/draftosaurus/public
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /var/www/html
 
-# Copiar los archivos del proyecto
+# Copiar todo el contenido desde el contexto del Dockerfile al directorio de trabajo en el contenedor
 COPY . .
 
-# Habilitar mod_rewrite (útil para .htaccess)
+# Configurar Apache para que use el archivo .htaccess
 RUN a2enmod rewrite
